@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -50,7 +51,9 @@ class MainActivity : ComponentActivity() {
                     ) {
                         Card(
                             modifier = Modifier.width(300.dp),
-                            border = BorderStroke(1.dp, color = Color.Blue),
+                            border = BorderStroke(1.dp, color = Color.LightGray),
+                            elevation = CardDefaults.cardElevation(5.dp)
+
                         ) {
                             Column(
                                 modifier = Modifier.padding(15.dp)
