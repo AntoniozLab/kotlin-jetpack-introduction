@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,11 +23,16 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
@@ -39,6 +45,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            var buttonText by remember { mutableStateOf("Abrir web") }
             KMPAppTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
@@ -50,7 +57,9 @@ class MainActivity : ComponentActivity() {
                         contentAlignment = Alignment.TopCenter
                     ) {
                         Card(
-                            modifier = Modifier.width(300.dp),
+                            modifier = Modifier.width(300.dp).clickable {
+                                buttonText = "Cargando ..."
+                            },
                             border = BorderStroke(1.dp, color = Color.LightGray),
                             elevation = CardDefaults.cardElevation(5.dp)
 
@@ -94,12 +103,12 @@ class MainActivity : ComponentActivity() {
                                         .wrapContentSize()
                                         .height(60.dp)
                                         .padding(vertical = 15.dp)
-                                        .border(1.dp, color = Color.Black)
+                                        .border(1.dp, color = Color.Blue)
                                         .padding(horizontal = 5.dp)
 
                                     CustomBox(
                                         boxButtonModifier,
-                                        message = "Abrir enlace",
+                                        message = buttonText,
                                         fontSize = 15.sp,
                                         color = Color.Black
                                     )
